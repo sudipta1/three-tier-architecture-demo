@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-app
+  labels:
+    app: voting-app
+    kubernetes.azure.com/generator: devhub
+  namespace: namespace-workflow-1719986225002
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: voting-app
+  template:
+    metadata:
+      labels:
+        app: voting-app
+    spec:
+      containers:
+        - name: voting-app
+          image: acrworkflow1719986225002.azurecr.io/image-workflow-1719986225002:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
